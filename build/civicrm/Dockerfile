@@ -52,7 +52,9 @@ ENV APACHE_PORT=80
 
 RUN apt update
 RUN apt install cron -y
-RUN "*/5 * * * * www-data /usr/local/bin/php /usr/local/bin/cv api job.execute --user=cronuser --cwd=/var/www/html" >> /etc/crontab
+RUN touch /etc/crontab
+RUN echo '*/5 * * * * www-data /usr/local/bin/php /usr/local/bin/cv api job.execute --user=cronuser --cwd=/var/www/html' >> /etc/crontab
+RUN service cron restart
 
 # Set ENTRYPOINT
 
