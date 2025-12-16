@@ -46,7 +46,13 @@ ENV CIVICRM_UF=Standalone
 
 RUN sed -i 's/80/${APACHE_PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 
-ENV APACHE_PORT=80  
+ENV APACHE_PORT=80
+
+# Setup Cronjob
+
+RUN apt update
+RUN apt install cron
+RUN "*/5 * * * * www-data /usr/local/bin/php /usr/local/bin/cv api job.execute --user=cronuser --cwd=/var/www/html" >> /etc/crontab
 
 # Set ENTRYPOINT
 
