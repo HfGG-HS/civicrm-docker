@@ -2,7 +2,7 @@ name: civicrm-standalone-testing
 services:
   app:
     hostname: civicrm-standalone-testing
-    image: hfgg-standalone-testing:6.9.0
+    image: hfgg-standalone-testing:6.9.1
 #    ports:
 #      - 8760:80 # CiviCRM will be available on port 8760.
     restart: unless-stopped
